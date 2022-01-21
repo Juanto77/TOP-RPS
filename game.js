@@ -23,14 +23,12 @@ function playRound(playerSelection, computerSelection) {
     ) {
     roundWinner = 'Computer';
     }
-
   };
 
 // User Input v1
 function userPlay() {
-    let selection = prompt('Rock, Paper or Scissors?');
-    let finalSelection = selection.toUpperCase();
-    console.log(finalSelection);
+    let array = prompt('Rock, Paper or Scissors?');
+    let finalSelection = array.toLowerCase();
     return finalSelection;
 };
 
@@ -39,7 +37,7 @@ function userPlay() {
 
 function computerPlay() {
     let array = [ 'Rock', 'Paper', 'Scissors']
-    let finalSelection = array[Math.floor(Math.random() * array.length)].toUpperCase();
+    let finalSelection = array[Math.floor(Math.random() * array.length)].toLowerCase();
     return finalSelection
 };
 
@@ -49,35 +47,22 @@ let computerSelection = computerPlay();
 //Declare a Winner using the roundWinner, playerSelecton & computerSelection.
 
 function declareWinner() {
-    if (roundWinner === 'Player') {
-        
+    if (roundWinner === 'Tie') {
+        alert('It\'s a Tie!');
+    }
+    else if (roundWinner === 'Player') {
+        alert('You won!' + ` ${playerSelection} beats ${computerSelection}`)
+    }
+    else if (roundWinner === 'Computer') {
+        alert('You lost' + `${computerSelection} beats ${playerSelection}`)
     }
 }
 
 playRound(playerSelection, computerSelection);
-console.log(computerSelection);
-alert(`${roundWinner}`);
+console.log('User: ' + playerSelection);
+console.log('Computer: ' + computerSelection);
+declareWinner();
 
-/* Unused Code
 
-/* Computer input: Rock, Paper, Scissors v1
-function computerPlay() {
-    let random = ['Rock', 'Paper', 'Scissors'];
-    return random[Math.floor(Math.random()* random.length)].toUpperCase();
-};
-*/
-/*
-//Computer input v3
-function randomComputer() {
-    let randomNumber = Math.floor(Math.random() * 3);
-    switch (randomNumber) {
-        case 0:
-            return 'ROCK'
-        case 1: 
-            return 'PAPER'
-        case 2:
-            return 'SCISSORS'
-     
-    }
-};
-*/
+
+
