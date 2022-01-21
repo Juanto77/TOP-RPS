@@ -3,23 +3,23 @@ let roundWinner = '';
 // Comparison Function
 function playRound(playerSelection, computerSelection) {
     if (
-        (playerSelection === 'ROCK' && computerSelection === 'ROCK') ||
-        (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS') ||
-        (playerSelection === 'PAPER' && computerSelection === 'PAPER')
+        (playerSelection === 'rock' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'scissors') ||
+        (playerSelection === 'paper' && computerSelection === 'paper')
     ) {
     roundWinner = 'Tie';
     }
     if (
-      (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') ||
-      (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') ||
-      (playerSelection === 'PAPER' && computerSelection === 'ROCK')
+      (playerSelection === 'rock' && computerSelection === 'scissors') ||
+      (playerSelection === 'scissors' && computerSelection === 'paper') ||
+      (playerSelection === 'paper' && computerSelection === 'rock')
     ) {
       roundWinner = 'Player';
     }
    if (
-      (playerSelection === 'SCISSORS' && computerSelection === 'ROCK') ||
-      (playerSelection === 'PAPER' && computerSelection === 'SCISSORS') ||
-      (playerSelection === 'ROCK' && computerSelection === 'PAPER')
+      (playerSelection === 'scissors' && computerSelection === 'rock') ||
+      (playerSelection === 'paper' && computerSelection === 'scissors') ||
+      (playerSelection === 'rock' && computerSelection === 'paper')
     ) {
     roundWinner = 'Computer';
     }
