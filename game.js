@@ -1,68 +1,70 @@
+let playerScore = 0;
+let computerScore = 0;
 let roundWinner = '';
 
-// Comparison Function
+
+// The Game 
 function playRound(playerSelection, computerSelection) {
     if (
-        (playerSelection === 'rock' && computerSelection === 'rock') ||
-        (playerSelection === 'scissors' && computerSelection === 'scissors') ||
-        (playerSelection === 'paper' && computerSelection === 'paper')
+        (playerSelection === 'Rock' && computerSelection === 'Rock') ||
+        (playerSelection === 'Scissors' && computerSelection === 'Scissors') ||
+        (playerSelection === 'Paper' && computerSelection === 'Paper')
     ) {
-    roundWinner = 'Tie';
+        roundWinner = 'Tie';
     }
     if (
-      (playerSelection === 'rock' && computerSelection === 'scissors') ||
-      (playerSelection === 'scissors' && computerSelection === 'paper') ||
-      (playerSelection === 'paper' && computerSelection === 'rock')
+      (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+      (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
+      (playerSelection === 'Paper' && computerSelection === 'Rock')
     ) {
-      roundWinner = 'Player';
+        playerScore++
+        roundWinner = 'Player';
     }
    if (
-      (playerSelection === 'scissors' && computerSelection === 'rock') ||
-      (playerSelection === 'paper' && computerSelection === 'scissors') ||
-      (playerSelection === 'rock' && computerSelection === 'paper')
+      (playerSelection == 'Scissors' && computerSelection == 'Rock') ||
+      (playerSelection == 'Paper' && computerSelection == 'Scissors') ||
+      (playerSelection == 'Rock' && computerSelection == 'Paper')
     ) {
-    roundWinner = 'Computer';
+        computerScore++
+        roundWinner = 'Computer';
     }
   };
 
-// User Input v1
-function userPlay() {
-    let array = prompt('Rock, Paper or Scissors?');
-    let finalSelection = array.toLowerCase();
-    return finalSelection;
-};
-
-
-// Computer input: Rock, Paper, Scissors v2
-
-function computerPlay() {
-    let array = [ 'Rock', 'Paper', 'Scissors']
-    let finalSelection = array[Math.floor(Math.random() * array.length)].toLowerCase();
-    return finalSelection
-};
-
-let playerSelection = userPlay();
-let computerSelection = computerPlay();
-
-//Declare a Winner using the roundWinner, playerSelecton & computerSelection.
-
+//Declare the winner with their weapon of choice.
 function declareWinner() {
     if (roundWinner === 'Tie') {
         alert('It\'s a Tie!');
     }
     else if (roundWinner === 'Player') {
-        alert('You won!' + ` ${playerSelection} beats ${computerSelection}`)
+        alert(`You won! ${playerSelection} beats ${computerSelection}`)
     }
     else if (roundWinner === 'Computer') {
-        alert('You lost' + `${computerSelection} beats ${playerSelection}`)
+        alert(`Sorry, you lost. ${computerSelection} beats ${playerSelection}`)
     }
-}
+};
 
+// User Input v1
+function userPlay() {
+    let input = prompt('Rock, Paper or Scissors?');
+    let weapon = input.charAt(0).toUpperCase() + input.slice(1);
+    return weapon;
+};
+
+
+// Computer picks from array. Outputs string of capital weapon.
+function computerPlay() {
+    let array = ['Rock', 'Paper', 'Scissors']
+    let weapon = array[Math.floor(Math.random() * array.length)].toLowerCase();
+    let capitalizeWeapon = weapon.charAt(0).toUpperCase() + weapon.slice(1);
+    return capitalizeWeapon;
+};
+
+let playerSelection = userPlay();
+let computerSelection = computerPlay();
+
+//Am I doing this right?
 playRound(playerSelection, computerSelection);
 console.log('User: ' + playerSelection);
 console.log('Computer: ' + computerSelection);
 declareWinner();
-
-
-
-
+console.log(playerScore); console.log(computerScore);
