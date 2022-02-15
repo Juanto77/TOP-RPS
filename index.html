@@ -9,14 +9,23 @@
 </head>
 <body>
     <div class="score">
-        <h1 data-id="computerScore">Computer Score:</h1>
-        <h1 data-id="playerScore">Player Score:</h1>
+        <h1 data-id="computerScore">Computer Score:<h1 id='computer-score'>0</h1></h1>
+        <h1 data-id="playerScore">Player Score:<h1 id='player-score'>0</h1></h1>
+    </div>
+
+    <div class="play">
+        <h1>Computer Chose:</h1><h1 id='computer-choice'></h1>
+        <h1>Player Chose:</h1><h1 id='player-choice'></h1>
+        <h1 id='round-winner'>Round Winner:</h1>
     </div>
 
     <div id='weapons'>
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
+    </div>
+    <div id="reset">
+        <button id="reset">Reset</button>
     </div>
 </body>
 </html>

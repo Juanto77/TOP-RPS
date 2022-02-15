@@ -1,23 +1,21 @@
-let playerScore = 0;
-let computerScore = 0;
-let roundWinner = '';
 
 const weapons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
+
+//Score Keeper
 weapons.forEach((button) => {
     button.addEventListener('click', function() {
         const playerSelection = this.textContent;
-
         const array = ['Rock', 'Paper', 'Scissors']
         const weapon = array[Math.floor(Math.random() * array.length)].toLowerCase();
         const computerSelection = weapon.charAt(0).toUpperCase() + weapon.slice(1);
-
-        
         playRound(playerSelection, computerSelection);
+        checkWinner();
     })
 });
 
-
-// The Game 
+//Compare Round
 function playRound(playerSelection, computerSelection) {
     if (
         (playerSelection === 'Rock' && computerSelection === 'Rock') ||
@@ -25,63 +23,51 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === 'Paper' && computerSelection === 'Paper')
     ) {
         roundWinner = 'Tie';
+        console.log('It\s a tie');
     }
     if (
       (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
       (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
       (playerSelection === 'Paper' && computerSelection === 'Rock')
     ) {
-        playerScore++
+        ++playerScore;
         roundWinner = 'Player';
-        alert(`You won! ${playerSelection} beats ${computerSelection}`)
+        console.log(`You won! ${playerSelection} beats ${computerSelection}`)
     }
    if (
       (playerSelection == 'Scissors' && computerSelection == 'Rock') ||
       (playerSelection == 'Paper' && computerSelection == 'Scissors') ||
       (playerSelection == 'Rock' && computerSelection == 'Paper')
     ) {
-        computerScore++
+        ++computerScore;
         roundWinner = 'Computer';
-        alert(`Sorry, you lost. ${computerSelection} beats ${playerSelection}`)
+        console.log(`Sorry, you lost. ${computerSelection} beats ${playerSelection}`)
     }
+    updateScore(roundWinner, playerSelection, computerSelection);
   };
 
-//Declare the winner with their weapon of choice.
-// function declareWinner() {
-//     if (roundWinner === 'Tie') {
-//         alert('It\'s a Tie!');
-//     }
-//     else if (roundWinner === 'Player') {
-//         alert(`You won! ${playerSelection} beats ${computerSelection}`)
-//     }
-//     else if (roundWinner === 'Computer') {
-//         alert(`Sorry, you lost. ${computerSelection} beats ${playerSelection}`)
-//     }
-// };
+  function updateScore(roundWinner, playerSelection, computerSelection){
+    document.getElementById('computer-score').textContent = computerScore;
+    document.getElementById('computer-choice').textContent = computerSelection;
+    document.getElementById('player-score').textContent = playerScore;
+    document.getElementById('player-choice').textContent = playerSelection;
+    document.getElementById('round-winner').textContent = roundWinner;
+}
 
-// // User Input v1
-// function userPlay() {
-//     let input = prompt('Rock, Paper or Scissors?');
-//     let weapon = input.charAt(0).toUpperCase() + input.slice(1);
-//     return weapon;
-// };
+  function checkWinner(){
+      if (playerScore === 5) {
+          alert('player wins')
+      } if (computerScore === 5) {
+          alert('computer wins!')
+      }
+  }
 
+  const restart = document.getElementById('reset');
+  restart.addEventListener('click', reset);
 
-// // Computer picks from array. Outputs string of capital weapon.
-// function computerPlay() {
-//     let array = ['Rock', 'Paper', 'Scissors']
-//     let weapon = array[Math.floor(Math.random() * array.length)].toLowerCase();
-//     let capitalizeWeapon = weapon.charAt(0).toUpperCase() + weapon.slice(1);
-//     return capitalizeWeapon;
-// };
-
-// let playerSelection = userPlay();
-// let computerSelection = computerPlay();
-
-
-//Am I doing this right?
-// playRound(playerSelection, computerSelection);
-// console.log('User: ' + playerSelection);
-// console.log('Computer: ' + computerSelection);
-// declareWinner();
-// console.log(playerScore); console.log(computerScore);
+  function reset(){
+    computerScore = 0
+    playerScore = 0
+    let playerSelection = ''
+    computerSelection = ''
+  }
